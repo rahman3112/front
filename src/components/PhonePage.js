@@ -22,7 +22,7 @@ const PhonePage = () => {
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('https://front-drab-nine.vercel.app/verify-phone-otp', { //to verify whether the entered otp by user and the otp generated are the same or not 
+      const response = await axios.post('https://back-5rp5.onrender.com/verify-phone-otp', { //to verify whether the entered otp by user and the otp generated are the same or not 
         phoneNumber,
         otp: phoneOtp,
       });
