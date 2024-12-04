@@ -1,0 +1,138 @@
+/* Global Styles */
+body {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+h2 {
+  font-size: 2.5rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Card Container */
+div {
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  width: 400px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+div:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Input Styles */
+input[type="email"], input[type="password"] {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 30px;
+  background: #f0f0f0;
+  font-size: 1rem;
+  transition: background 0.3s ease;
+}
+
+input[type="email"]:focus, input[type="password"]:focus {
+  background: #e0e0e0;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(90deg, #36D1DC 0%, #5B86E5 100%);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: linear-gradient(90deg, #5B86E5 0%, #36D1DC 100%);
+}
+
+/* Sign-up Link */
+p {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 20px;
+  color: #333;
+}
+
+p a {
+  color: #36D1DC;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+p a:hover {
+  color: #5B86E5;
+}
+
+/* Subtle background animations */
+body::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, #ACB6E5, #74ebd5);
+  z-index: -1;
+  animation: rotateBackground 10s linear infinite;
+}
+
+@keyframes rotateBackground {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Animation for inputs */
+input, button {
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+input:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+input:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+button {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeInUp {
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
