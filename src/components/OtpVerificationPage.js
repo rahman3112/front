@@ -9,8 +9,8 @@ const OtpVerificationPage = () => {
     e.preventDefault();
     
     const endpoint = verificationType === 'email'  // checks whether the verificationtype is email or not 
-      ? 'http://localhost:5000/verify-email-otp'   //if true sets endpoint equal to the url 
-      : 'http://localhost:5000/verify-phone-otp';  //if false
+      ? 'https://back-5rp5.onrender.com/verify-email-otp'   //if true sets endpoint equal to the url 
+      : 'https://back-5rp5.onrender.com/verify-phone-otp';  //if false
     
     const email = localStorage.getItem('email') ;  //retrieves the email stored in our web application locally
     const phoneNumber = localStorage.getItem('phoneNumber'); 

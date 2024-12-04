@@ -10,8 +10,8 @@ const PhonePage = () => {
     e.preventDefault();
     const email = localStorage.getItem('email');
     try {
-      await axios.post('http://localhost:5000/save-phone', { email, phoneNumber }); //the phone number is saved locally
-      await axios.post('http://localhost:5000/send-phone-otp', { phoneNumber });//used to send otp to the user 
+      await axios.post('https://back-5rp5.onrender.com/save-phone', { email, phoneNumber }); //the phone number is saved locally
+      await axios.post('https://back-5rp5.onrender.com/send-phone-otp', { phoneNumber });//used to send otp to the user 
       alert('Phone number submitted successfully. OTP sent to your phone.');
       setIsPhoneOtpSent(true);
     } catch (error) {
