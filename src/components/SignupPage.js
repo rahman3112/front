@@ -118,7 +118,7 @@ const SignupPage = () => {
         >
           Already have an account?{' '}
           <a
-            href="/"
+            href="/login"
             style={{
               color: '#66FCF1',
               textDecoration: 'none',
