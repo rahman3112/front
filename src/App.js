@@ -6,6 +6,7 @@ import OtpVerificationPage from './components/OtpVerificationPage';
 import PhonePage from './components/PhonePage';  // Import the new component
 import HomePage from './components/HomePage';    // Import the new component
 import GanPage from './components/GanPage';
+import WelcomePage from './components/welcomepage';
 // Authentication Context
 const AuthContext = React.createContext();
 
@@ -30,7 +31,8 @@ function App() {
       <Router>
 
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={<WelcomePage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/otp-verification" element={<OtpVerificationPage />} />
           <Route path="/phone" element={<PhonePage />} />

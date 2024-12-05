@@ -50,11 +50,11 @@ const GanPage = () => {
   };
 
   return (
-    <div style={styles.container}>
+    <div >
       <h1>Generate Fashion Item</h1>
       
       {/* Error Message */}
-      {error && <div style={styles.error}>{error}</div>}
+      {error && <div >{error}</div>}
 
       <textarea
         value={input}
@@ -62,36 +62,36 @@ const GanPage = () => {
         placeholder="Enter description of the fashion item"
         rows="4"
         cols="50"
-        style={styles.textArea}
+        
       />
-      <button onClick={handleGenerateImage} disabled={loading} style={styles.button}>
+      <button onClick={handleGenerateImage} disabled={loading} >
         {loading ? 'Generating...' : 'Generate Image'}
       </button>
 
       {generatedImage && (
-        <div style={styles.imageContainer}>
+        <div >
           <h3>Generated Image</h3>
           <img
             src={`data:image/png;base64,${generatedImage}`}
             alt="Generated Fashion Item"
-            style={styles.image}
+       
           />
         </div>
       )}
 
       {originalImage && (
-        <div style={styles.imageContainer}>
+        <div>
           <h3>Original Image</h3>
           <img
             src={`data:image/png;base64,${originalImage}`}
             alt="Original Fashion Item"
-            style={styles.image}
+            
           />
         </div>
       )}
 
       {accuracy !== null && (
-        <div style={styles.accuracyContainer}>
+        <div>
           <h3>Accuracy</h3>
           <p>{accuracy}</p>
         </div>
@@ -100,51 +100,5 @@ const GanPage = () => {
   );
 };
 
-const styles = {
-  container: {
-    margin: '20px',
-    padding: '20px',
-    backgroundColor: '#f4f4f4',
-    borderRadius: '8px',
-  },
-  textArea: {
-    width: '100%',
-    padding: '10px',
-    fontSize: '16px',
-    borderRadius: '5px',
-    border: '1px solid #ccc',
-  },
-  button: {
-    backgroundColor: '#4CAF50',
-    color: 'white',
-    padding: '10px 20px',
-    fontSize: '16px',
-    cursor: 'pointer',
-    border: 'none',
-    borderRadius: '5px',
-    marginTop: '10px',
-  },
-  imageContainer: {
-    marginTop: '20px',
-    textAlign: 'center',  // Center the images in the container
-  },
-  image: {
-    maxWidth: '100%', // Ensure the image is responsive and scales correctly
-    height: 'auto', // Maintain the aspect ratio
-    borderRadius: '8px',
-    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',  // Optional: Add shadow for aesthetics
-    maxHeight: '500px', // Limit the height of the image to prevent overflow
-  },
-  accuracyContainer: {
-    marginTop: '20px',
-    fontSize: '18px',
-    fontWeight: 'bold',
-  },
-  error: {
-    color: 'red',
-    fontWeight: 'bold',
-    marginBottom: '10px',
-  }
-};
 
 export default GanPage;
