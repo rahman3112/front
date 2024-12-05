@@ -14,7 +14,7 @@ const SignupPage = () => {
       });
       if (response.data.success) { // if the response from the backend is received 
         alert('Signup successful. Please login.');
-        window.location.href = '/';  // Redirect to Login after successful signup
+        window.location.href = '/login';  // Redirect to Login after successful signup
       } else {
         alert('Signup failed.'); // In case of signup failure 
       }
