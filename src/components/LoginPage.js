@@ -39,7 +39,7 @@ const LoginPage = () => {
         style={{
           backgroundColor: '#1F2833',
           padding: '40px',
-          borderRadius: '10px',
+          borderRadius: '30px',
           width: '100%',
           maxWidth: '400px',
           boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
