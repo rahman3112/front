@@ -7,6 +7,8 @@ import PhonePage from './components/PhonePage';  // Import the new component
 import HomePage from './components/HomePage';    // Import the new component
 import GanPage from './components/GanPage';
 import WelcomePage from './components/welcomepage';
+import Choose from './components/Choose';
+
 // Authentication Context
 const AuthContext = React.createContext();
 
@@ -37,6 +39,7 @@ function App() {
           <Route path="/otp-verification" element={<OtpVerificationPage />} />
           <Route path="/phone" element={<PhonePage />} />
           <Route path="/gan" element={<GanPage />} />
+          <Route path="/choose" element={<Choose />} />
           
           {/* Protected Route for Home Page */}
           <Route 
