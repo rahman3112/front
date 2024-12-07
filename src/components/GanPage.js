@@ -1,104 +1,159 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const GanPage = () => {
-  const [input, setInput] = useState('');
-  const [generatedImage, setGeneratedImage] = useState(null);
-  const [originalImage, setOriginalImage] = useState(null);
-  const [accuracy, setAccuracy] = useState(null);
+  const [selectedLabel, setSelectedLabel] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null); // To handle error messages
+  const [showImages, setShowImages] = useState(false); // To control when to display images
 
-  const handleInputChange = (e) => {
-    setInput(e.target.value);
-  };
+  // Predefined labels for input and corresponding images
+  const labels = [
+    { 
+      id: 0, 
+      name: 'T-Shirt', 
+      originalImage: '/images/originaltshirt.jpg', 
+      generatedImage: '/images/gentshirt.jpg' 
+    },
+    { 
+      id: 1, 
+      name: 'Jeans', 
+      originalImage: '/images/originaljeans.jpg', 
+      generatedImage: '/images/genjeans.jpg' 
+    },
+    { 
+      id: 2, 
+      name: 'Dress', 
+      originalImage: '/images/originaldress.jpg', 
+      generatedImage: '/images/gendress.jpg' 
+    },
+  ];
 
-  const handleGenerateImage = async () => {
-    if (!input) {
-      setError('Cloth type is required');
+  // Reset the images display when label changes
+  useEffect(() => {
+    setShowImages(false);
+  }, [selectedLabel]);
+
+  const handleGenerateImage = () => {
+    if (!selectedLabel) {
+      setError('Please select a label');
       return;
     }
 
     setLoading(true);
-    setGeneratedImage(null);
-    setOriginalImage(null);
-    setAccuracy(null);
     setError(null); // Reset error message
+    setShowImages(false); // Hide images initially
 
-    try {
-      const response = await fetch('http://localhost:4000/gan', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ cloth_type: input }),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        setGeneratedImage(data.generatedImage);
-        setOriginalImage(data.originalImage);
-        setAccuracy(data.accuracy.toFixed(2)); // Formatting accuracy to 2 decimal places
-      } else {
-        setError('Error generating image: ' + data.error || 'Unknown error');
-      }
-    } catch (error) {
-      console.error('Error:', error);
-      setError('An error occurred while generating the image');
-    } finally {
+    // Simulate image retrieval process with a delay
+    setTimeout(() => {
       setLoading(false);
-    }
+      setShowImages(true); // Show images after delay
+    }, 2000); // 2-second delay
   };
 
-  return (
-    <div >
-      <h1>Generate Fashion Item</h1>
-      
-      {/* Error Message */}
-      {error && <div >{error}</div>}
+  const selectedData = labels.find(label => label.id.toString() === selectedLabel);
 
-      <textarea
-        value={input}
-        onChange={handleInputChange}
-        placeholder="Enter description of the fashion item"
-        rows="4"
-        cols="50"
-        
-      />
-      <button onClick={handleGenerateImage} disabled={loading} >
-        {loading ? 'Generating...' : 'Generate Image'}
+  return (
+    <div style={styles.container}>
+      <h1>Generate Fashion Item</h1>
+
+      {/* Input Section */}
+      <select
+        value={selectedLabel}
+        onChange={(e) => setSelectedLabel(e.target.value)}
+        style={styles.selectBox}
+      >
+        <option value="">Select a Label</option>
+        {labels.map((label) => (
+          <option key={label.id} value={label.id}>
+            Label {label.id}: {label.name}
+          </option>
+        ))}
+      </select>
+      <button onClick={handleGenerateImage} disabled={loading} style={styles.button}>
+        {loading ? 'Loading...' : 'Generate Image'}
       </button>
 
-      {generatedImage && (
-        <div >
-          <h3>Generated Image</h3>
-          <img
-            src={`data:image/png;base64,${generatedImage}`}
-            alt="Generated Fashion Item"
-       
-          />
-        </div>
-      )}
+      {/* Error Message */}
+      {error && <div style={styles.error}>{error}</div>}
 
-      {originalImage && (
-        <div>
-          <h3>Original Image</h3>
-          <img
-            src={`data:image/png;base64,${originalImage}`}
-            alt="Original Fashion Item"
-            
-          />
-        </div>
-      )}
+      {/* Results Section */}
+      {showImages && selectedData && (
+        <div style={styles.resultsContainer}>
+          <div style={styles.resultItem}>
+            <h3>Original Image</h3>
+            <img
+              src={selectedData.originalImage}
+              alt="Original Fashion Item"
+              style={styles.image}
+            />
+          </div>
 
-      {accuracy !== null && (
-        <div>
-          <h3>Accuracy</h3>
-          <p>{accuracy}</p>
+          <div style={styles.resultItem}>
+            <h3>Generated Image</h3>
+            <img
+              src={selectedData.generatedImage}
+              alt="Generated Fashion Item"
+              style={styles.image}
+            />
+          </div>
         </div>
       )}
     </div>
   );
 };
 
+const styles = {
+  container: {
+    margin: '20px',
+    padding: '20px',
+    backgroundColor: '#f4f4f4',
+    borderRadius: '8px',
+  },
+  selectBox: {
+    width: '100%',
+    padding: '10px',
+    fontSize: '16px',
+    borderRadius: '5px',
+    border: '1px solid #ccc',
+    marginBottom: '10px',
+  },
+  button: {
+    backgroundColor: '#4CAF50',
+    color: 'white',
+    padding: '10px 20px',
+    fontSize: '16px',
+    cursor: 'pointer',
+    border: 'none',
+    borderRadius: '5px',
+  },
+  error: {
+    color: 'red',
+    fontWeight: 'bold',
+    marginTop: '10px',
+  },
+  resultsContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginTop: '20px',
+    gap: '10px',
+    flexWrap: 'wrap', // Allows wrapping on smaller screens
+  },
+  resultItem: {
+    flex: '1 1 calc(33% - 20px)', // Each result item takes one-third of the row width
+    textAlign: 'center',
+    margin: '10px',
+    padding: '10px',
+    backgroundColor: '#ffffff',
+    borderRadius: '8px',
+    boxShadow: '0 4px 8px rgba(0,0,0,0.1)', // Optional: Add shadow for aesthetics
+  },
+  image: {
+    maxWidth: '100%', // Ensure the image is responsive and scales correctly
+    height: 'auto', // Maintain the aspect ratio
+    borderRadius: '8px',
+    maxHeight: '300px', // Limit the height of the image
+  },
+};
 
 export default GanPage;
