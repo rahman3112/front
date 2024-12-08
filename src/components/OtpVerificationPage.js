@@ -28,7 +28,7 @@ const OtpVerificationPage = () => {
           window.location.href = '/phone';
         } else {
           // Redirect to HomePage after successful phone OTP verification
-          window.location.href = '/home';
+          window.location.href = '/choose';
         }
       } else {
         alert('Invalid OTP');
