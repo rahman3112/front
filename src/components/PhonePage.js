@@ -28,7 +28,7 @@ const PhonePage = () => {
       });
       if (response.data.success) {
         alert('Phone OTP verified successfully');
-        window.location.href = '/home'; // Redirect to home page after OTP verification
+        window.location.href = '/choose'; // Redirect to home page after OTP verification
       } else {
         alert('Invalid Phone OTP');
       }

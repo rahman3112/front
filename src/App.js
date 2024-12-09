@@ -40,8 +40,6 @@ function App() {
           <Route path="/phone" element={<PhonePage />} />
           <Route path="/gan" element={<GanPage />} />
           <Route path="/choose" element={<Choose />} />
-          
-          {/* Protected Route for Home Page */}
           <Route 
             path="/home" 
             element={<HomePage/>} 
