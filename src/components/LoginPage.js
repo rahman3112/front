@@ -8,7 +8,7 @@ const LoginPage = () => {
   const handleLogin = async (e) => { //on submission the function gets executed 
     e.preventDefault(); //prevents the default or empty page from being submitted 
     try {
-      const response = await axios.post('https://back-5rp5.onrender.com/login', { //posts a request to backend and waits for a response
+      const response = await axios.post('https://localhost:5000/login', { //posts a request to backend and waits for a response
         email,
         password,
       });

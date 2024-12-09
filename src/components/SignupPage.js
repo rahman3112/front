@@ -8,7 +8,7 @@ const SignupPage = () => {
   const handleSignup = async (e) => { // async lets the code run in background while the site is being loaded  
     e.preventDefault(); //prevents the default or blank/empty page from being submitted 
     try {
-      const response = await axios.post('https://back-5rp5.onrender.com/signup', { //await pauses the other things until a response is obtained from the server 
+      const response = await axios.post('https://localhost:5000/signup', { //await pauses the other things until a response is obtained from the server 
         email,
         password,   //here email and password are passed to the backend 
       });
