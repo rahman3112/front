@@ -31,7 +31,7 @@ const GanPage = () => {
       id: 2, 
       name: 'Dress', 
       originalImage: label2, 
-      generatedImage: '/images/gendress.jpg' 
+      generatedImage: gen2 
     },
     { 
       id: 3, 
